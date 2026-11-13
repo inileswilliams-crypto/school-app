@@ -80,4 +80,36 @@ header p {
   border-radius: 6px;
   font-size: 1.05rem;
   cursor: pointer;
+}/* Arranges the staff input fields and submit button */
+.order-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Styles the text input boxes */
+.order-inputs input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #222222;
+  border-radius: 6px;
+}
+
+/* Styles the Place Order button */
+#placeOrderBtn {
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #222222;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Slightly lightens the button when hovered */
+#placeOrderBtn:hover {
+  background-color: #444444;
 }

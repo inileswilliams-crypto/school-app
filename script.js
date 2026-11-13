@@ -84,4 +84,23 @@ function openMenu(vendorName) {
 function goBack() {
   document.getElementById("menuSection").style.display = "none";
   document.getElementById("vendorSection").style.display = "block";
+}// VARIABLE:
+// Keeps track of which vendor menu is currently open.
+let currentVendor = "";// FUNCTION:
+// Collects the selected food items and staff details when Place Order is clicked.
+function submitOrder() {
+  // Reads the staff member's name and room number
+  const staffName = document.getElementById("staffName").value.trim();
+  const roomNumber = document.getElementById("roomNumber").value.trim();
+
+  // Finds all checked food checkboxes
+  const checkedBoxes = document.querySelectorAll('input[name="foodItem"]:checked');
+  const chosenFoods = [];
+
+  for (let i = 0; i < checkedBoxes.length; i++) {
+    chosenFoods.push(checkedBoxes[i].value);
+  }
+
+  // Temporarily logs the order details to confirm reading inputs works
+  console.log("Order submitted:", currentVendor, chosenFoods, staffName, roomNumber);
 }
