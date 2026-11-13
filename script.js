@@ -139,4 +139,53 @@ function submitOrder() {
     ": " +
     chosenFoods.join(", ") +
     ".";
+}// FUNCTION:
+// Saves a new order summary into browser localStorage and refreshes the list.
+function saveOrderToHistory(orderText) {
+  // Reads existing orders from localStorage, or starts an empty array if none exist
+  const savedOrders = JSON.parse(localStorage.getItem("wChewsOrders")) || [];
+
+  // Adds the newest order to the array
+  savedOrders.push(orderText);
+
+  // Saves the updated array back into localStorage as text
+  localStorage.setItem("wChewsOrders", JSON.stringify(savedOrders));
+
+  // Updates the visible list on the page
+  displayOrderHistory();
 }
+
+// FUNCTION:
+// Reads saved orders from localStorage and displays them inside #orderHistoryList.
+function displayOrderHistory() {
+  const historyList = document.getElementById("orderHistoryList");
+  const savedOrders = JSON.parse(localStorage.getItem("wChewsOrders")) || [];
+
+  historyList.innerHTML = "";
+
+  // Shows a helpful message if no orders have been saved yet
+  if (savedOrders.length === 0) {
+    const emptyItem = document.createElement("li");
+    emptyItem.textContent = "No orders placed yet.";
+    historyList.appendChild(emptyItem);
+    return;
+  }
+
+  // Loops through saved orders and adds each one to the bulleted list
+  for (let i = 0; i < savedOrders.length; i++) {
+    const listItem = document.createElement("li");
+    listItem.textContent = savedOrders[i];
+    historyList.appendChild(listItem);
+  }
+}
+
+// FUNCTION:
+// Deletes only the W Chews order history from localStorage.
+function clearHistory() {
+  localStorage.removeItem("wChewsOrders");
+  displayOrderHistory();
+}
+
+// Runs automatically when the page loads so saved orders appear right away
+displayOrderHistory();// Saves the confirmed order string into localStorage
+  saveOrderToHistory(confirmationBox.textContent);
