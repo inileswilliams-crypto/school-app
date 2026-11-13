@@ -1,3 +1,7 @@
+// VARIABLE:
+// Keeps track of which vendor menu is currently open.
+let currentVendor = "";
+
 // DATA OBJECT:
 // Stores the menu items for each available lunch option.
 const menus = {
@@ -51,6 +55,9 @@ const menus = {
 // FUNCTION:
 // Opens the menu for whichever vendor button the staff member clicked.
 function openMenu(vendorName) {
+  // Remembers which vendor is open so it shows up in the order summary
+  currentVendor = vendorName;
+
   // Hides the vendor buttons and shows the menu section
   document.getElementById("vendorSection").style.display = "none";
   document.getElementById("menuSection").style.display = "block";
@@ -83,28 +90,12 @@ function openMenu(vendorName) {
 // Returns the user to the vendor selection screen.
 function goBack() {
   document.getElementById("menuSection").style.display = "none";
+  document.getElementById("orderConfirmation").style.display = "none";
   document.getElementById("vendorSection").style.display = "block";
-}// VARIABLE:
-// Keeps track of which vendor menu is currently open.
-let currentVendor = "";// FUNCTION:
-// Collects the selected food items and staff details when Place Order is clicked.
-function submitOrder() {
-  // Reads the staff member's name and room number
-  const staffName = document.getElementById("staffName").value.trim();
-  const roomNumber = document.getElementById("roomNumber").value.trim();
+}
 
-  // Finds all checked food checkboxes
-  const checkedBoxes = document.querySelectorAll('input[name="foodItem"]:checked');
-  const chosenFoods = [];
-
-  for (let i = 0; i < checkedBoxes.length; i++) {
-    chosenFoods.push(checkedBoxes[i].value);
-  }
-
-  // Temporarily logs the order details to confirm reading inputs works
-  console.log("Order submitted:", currentVendor, chosenFoods, staffName, roomNumber);
-}// FUNCTION:
-// Validates the order and displays an on-screen confirmation summary.
+// FUNCTION:
+// Validates the order, displays confirmation, and saves it to order history.
 function submitOrder() {
   // Reads the staff member's name and room number
   const staffName = document.getElementById("staffName").value.trim();
@@ -139,19 +130,17 @@ function submitOrder() {
     ": " +
     chosenFoods.join(", ") +
     ".";
-}// FUNCTION:
+
+  // Saves the confirmed order string into localStorage
+  saveOrderToHistory(confirmationBox.textContent);
+}
+
+// FUNCTION:
 // Saves a new order summary into browser localStorage and refreshes the list.
 function saveOrderToHistory(orderText) {
-  // Reads existing orders from localStorage, or starts an empty array if none exist
   const savedOrders = JSON.parse(localStorage.getItem("wChewsOrders")) || [];
-
-  // Adds the newest order to the array
   savedOrders.push(orderText);
-
-  // Saves the updated array back into localStorage as text
   localStorage.setItem("wChewsOrders", JSON.stringify(savedOrders));
-
-  // Updates the visible list on the page
   displayOrderHistory();
 }
 
@@ -163,7 +152,6 @@ function displayOrderHistory() {
 
   historyList.innerHTML = "";
 
-  // Shows a helpful message if no orders have been saved yet
   if (savedOrders.length === 0) {
     const emptyItem = document.createElement("li");
     emptyItem.textContent = "No orders placed yet.";
@@ -171,7 +159,6 @@ function displayOrderHistory() {
     return;
   }
 
-  // Loops through saved orders and adds each one to the bulleted list
   for (let i = 0; i < savedOrders.length; i++) {
     const listItem = document.createElement("li");
     listItem.textContent = savedOrders[i];
@@ -187,5 +174,4 @@ function clearHistory() {
 }
 
 // Runs automatically when the page loads so saved orders appear right away
-displayOrderHistory();// Saves the confirmed order string into localStorage
-  saveOrderToHistory(confirmationBox.textContent);
+displayOrderHistory();
