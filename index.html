@@ -29,7 +29,17 @@
       without waiting in long lines so you can enjoy your lunch break.
     </p>
   </header>
-</body>
+</body><!-- Hidden menu section that appears after a vendor is selected -->
+  <section id="menuSection" style="display: none;">
+    <!-- Back button to return to vendor choices -->
+    <button type="button" id="backButton" onclick="goBack()">← Back to Food Choices</button>
+
+    <!-- Heading that updates to show the chosen vendor's name -->
+    <h2 id="menuTitle">Menu</h2>
+
+    <!-- Container where JavaScript will place the menu checkboxes -->
+    <div id="menuItems"></div>
+  </section>
 <!-- Section where staff choose which vendor menu to open -->
   <main id="vendorSection">
     <h2>Available food of the day</h2>

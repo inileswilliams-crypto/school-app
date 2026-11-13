@@ -53,4 +53,31 @@ header p {
 /* Changes button background slightly when hovered */
 .vendor-buttons button:hover {
   background-color: #eeeeee;
+}/* Centers and styles the menu display section */
+#menuSection {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Styles the Back button */
+#backButton {
+  padding: 8px 14px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 15px;
+  border: 1px solid #222222;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+/* Styles each menu item row */
+.menu-item {
+  display: block;
+  padding: 10px;
+  margin-bottom: 8px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 1.05rem;
+  cursor: pointer;
 }
