@@ -112,4 +112,13 @@ header p {
 /* Slightly lightens the button when hovered */
 #placeOrderBtn:hover {
   background-color: #444444;
+}/* Styles the on-screen order confirmation box */
+#orderConfirmation {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e8f5e9;
+  border: 2px solid #2e7d32;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  line-height: 1.5;
 }

@@ -103,4 +103,40 @@ function submitOrder() {
 
   // Temporarily logs the order details to confirm reading inputs works
   console.log("Order submitted:", currentVendor, chosenFoods, staffName, roomNumber);
+}// FUNCTION:
+// Validates the order and displays an on-screen confirmation summary.
+function submitOrder() {
+  // Reads the staff member's name and room number
+  const staffName = document.getElementById("staffName").value.trim();
+  const roomNumber = document.getElementById("roomNumber").value.trim();
+
+  // Collects all checked food checkboxes
+  const checkedBoxes = document.querySelectorAll('input[name="foodItem"]:checked');
+  const chosenFoods = [];
+
+  for (let i = 0; i < checkedBoxes.length; i++) {
+    chosenFoods.push(checkedBoxes[i].value);
+  }
+
+  // Targets the confirmation box on the page
+  const confirmationBox = document.getElementById("orderConfirmation");
+  confirmationBox.style.display = "block";
+
+  // Checks that at least one food item, a name, and a room number were entered
+  if (chosenFoods.length === 0 || staffName === "" || roomNumber === "") {
+    confirmationBox.textContent = "Please select at least one food item and enter your name and room number.";
+    return;
+  }
+
+  // Displays the full order confirmation summary
+  confirmationBox.textContent =
+    "Order Placed! " +
+    staffName +
+    " (Room " +
+    roomNumber +
+    ") ordered from " +
+    currentVendor +
+    ": " +
+    chosenFoods.join(", ") +
+    ".";
 }
