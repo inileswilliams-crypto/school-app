@@ -1,23 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Sets the character encoding -->
-  <meta charset="UTF-8">
+// FUNCTION:
+// Runs when a staff member clicks one of the vendor buttons.
+function openMenu(vendorName) {
+  // Temporarily logs the chosen vendor to confirm the click works
+  console.log("Selected vendor:", vendorName);
 
-  <!-- Helps the webpage display correctly on different screen sizes -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Sets the title shown in the browser tab -->
-  <title>W Chews</title>
-
-  <!-- Connects the CSS file -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Connects the JavaScript file -->
-  <script src="script.js" defer></script>
-</head>
-
-<body>
-  <!-- Application features will be added here -->
-</body>
-</html>
+  // Hides the vendor selection screen so the menu can appear in Feature 3
+  document.getElementById("vendorSection").style.display = "none";
+}

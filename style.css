@@ -24,4 +24,33 @@ h1 {
 header p {
   font-size: 1.1rem;
   line-height: 1.5;
+}/* Centers and styles the vendor selection section */
+#vendorSection {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Arranges the vendor buttons in a clean stack */
+.vendor-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Styles the clickable vendor buttons */
+.vendor-buttons button {
+  padding: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #222222;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+/* Changes button background slightly when hovered */
+.vendor-buttons button:hover {
+  background-color: #eeeeee;
 }
